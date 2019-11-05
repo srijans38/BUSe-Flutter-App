@@ -1,7 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+
+Future<Position> fetchCurrentLoc() async {
+  Position position = await Geolocator()
+      .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  return position;
+}
 
 Future<List> fetchRoutes() async {
   //List locData = List();
@@ -15,6 +22,12 @@ Future<List> fetchBPoints() async {
   final response = await http.get('https://buseweb.tech/api/bpoint/');
   var bpoints = await json.decode(response.body);
   return bpoints;
+}
+
+Future<List<Placemark>> fetchPlacemark(double lat, double long) async {
+  List<Placemark> placemark =
+      await Geolocator().placemarkFromCoordinates(lat, long);
+  return placemark;
 }
 
 Future<List> fetchBuses() async {

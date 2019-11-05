@@ -1,3 +1,4 @@
+import 'package:buse_test/screens/bus_map.dart';
 import 'package:buse_test/screens/get_data.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,9 @@ class BusCard extends StatefulWidget {
 }
 
 class _BusCardState extends State<BusCard> {
+  double lat;
+  double long;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,6 +57,8 @@ class _BusCardState extends State<BusCard> {
             future: fetchLoc(widget.bId),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                lat = snapshot.data.lat;
+                long = snapshot.data.long;
                 return Center(
                   child: Text(
                     'Near ${snapshot.data.lat.toString()}, ${snapshot.data.long.toString()}',
@@ -75,14 +81,23 @@ class _BusCardState extends State<BusCard> {
           ),
           OutlineButton(
             child: Text(
-              'Details',
+              'Show in Map',
               style: TextStyle(
                   color: Colors.black.withAlpha(200),
                   fontSize: 15.0,
                   fontFamily: 'Montserrat'),
             ),
             splashColor: Colors.deepOrangeAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BusMap(
+                            bno: widget.bno,
+                            lat: lat,
+                            long: long,
+                          )));
+            },
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
             borderSide: BorderSide(color: Colors.black),

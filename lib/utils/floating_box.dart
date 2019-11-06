@@ -17,7 +17,7 @@ class FloatingBox extends StatelessWidget {
           minWidth: 200,
         ),
         elevation: 2.0,
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
@@ -40,7 +40,6 @@ class FloatingBox extends StatelessWidget {
                 Icon(
                   icon,
                   size: 30.0,
-                  color: Colors.black.withAlpha(200),
                 ),
                 SizedBox(
                   height: 20.0,
@@ -48,7 +47,7 @@ class FloatingBox extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    color: Colors.black.withAlpha(200),
+                    //color: Colors.black.withAlpha(200),
                     //fontWeight: FontWeight.w600,
                     fontSize: 20.0,
                     fontFamily: 'Montserrat',

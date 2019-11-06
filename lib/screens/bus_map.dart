@@ -21,8 +21,7 @@ class _BusMapState extends State<BusMap> {
   @override
   void initState() {
     super.initState();
-    var currLocFuture = fetchCurrentLoc();
-    currLocFuture.then((result) {
+    fetchCurrentLoc().then((result) {
       currLoc = LatLng(result.latitude, result.longitude);
       setState(() {});
     });

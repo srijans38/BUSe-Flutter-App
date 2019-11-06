@@ -8,9 +8,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light().copyWith(
+        backgroundColor: Colors.orangeAccent,
+      ),
+      themeMode: ThemeMode.light,
+      darkTheme: ThemeData.dark().copyWith(
+        backgroundColor: Colors.black.withOpacity(0.6),
+        accentColor: Colors.orangeAccent,
+        cardColor: Color(0xffe67e22),
+      ),
       home: Scaffold(
         body: HomeScreen(),
       ),
     );
   }
 }
+
+ThemeData MyThemeLight = ThemeData.light().copyWith();

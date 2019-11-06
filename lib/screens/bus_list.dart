@@ -40,8 +40,7 @@ class _BusListState extends State<BusList> {
   @override
   void initState() {
     super.initState();
-    buses = fetchBuses();
-    buses.then((result) {
+    fetchBuses().then((result) {
       for (var bus in result) {
         busList.add(Bus.fromJSON(bus));
       }
@@ -57,10 +56,10 @@ class _BusListState extends State<BusList> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         color: Colors.orangeAccent,
         child: FutureBuilder(
-          future: buses,
+          future: fetchBuses(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView(

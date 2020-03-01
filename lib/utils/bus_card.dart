@@ -2,6 +2,8 @@ import 'package:buse_test/screens/bus_map.dart';
 import 'package:buse_test/screens/get_data.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/get_data.dart';
+
 class BusCard extends StatefulWidget {
   final String bno;
   final int bId;
@@ -53,7 +55,7 @@ class _BusCardState extends State<BusCard> {
           SizedBox(
             height: 25.0,
           ),
-          FutureBuilder(
+          FutureBuilder<BusLoc>(
             future: fetchLoc(widget.bId),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -61,7 +63,7 @@ class _BusCardState extends State<BusCard> {
                 long = snapshot.data.long;
                 return Center(
                   child: Text(
-                    'Near ${snapshot.data.lat.toString()}, ${snapshot.data.long.toString()}',
+                    'Near ${snapshot.data.address}',
                   ),
                 );
               }
@@ -90,13 +92,15 @@ class _BusCardState extends State<BusCard> {
             splashColor: Colors.deepOrangeAccent,
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BusMap(
-                            bno: widget.bno,
-                            lat: lat,
-                            long: long,
-                          )));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BusMap(
+                    bno: widget.bno,
+                    lat: lat,
+                    long: long,
+                  ),
+                ),
+              );
             },
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),

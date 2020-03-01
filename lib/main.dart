@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         backgroundColor: Colors.orangeAccent,
       ),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       darkTheme: ThemeData.dark().copyWith(
         backgroundColor: Colors.black.withOpacity(0.6),
         accentColor: Colors.orangeAccent,

@@ -40,6 +40,10 @@ Future<List> fetchBuses() async {
 Future<BusLoc> fetchLoc(int busId) async {
   final response = await http.get('https://buseweb.tech/api/loc/$busId/');
   var busLoc = await BusLoc.fromJSON(json.decode(response.body));
+  final geocode = await http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=${busLoc.lat},${busLoc.long}&key=AIzaSyCqPxIandJcCL4SqyRh8Q0Cm5nK7RZnVF4');
+  final address = json.decode(geocode.body)['results'][0]['address_components'];
+  final address_show = address[0]['long_name'].toString() + ', ' +  address[1]['long_name'].toString();
+  busLoc.address = address_show;
   return busLoc;
 }
 
@@ -93,8 +97,9 @@ class Bus {
 class BusLoc {
   final double lat;
   final double long;
+  String address;
 
-  BusLoc({this.lat, this.long});
+  BusLoc({this.lat, this.long, this.address});
 
   factory BusLoc.fromJSON(Map<String, dynamic> json) {
     return BusLoc(lat: json['lat'], long: json['long']);

@@ -35,7 +35,7 @@ class _BusCardState extends State<BusCard> {
             blurRadius: 1.0,
           ),
         ],
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Column(
@@ -46,7 +46,6 @@ class _BusCardState extends State<BusCard> {
             child: Text(
               widget.bno,
               style: TextStyle(
-                color: Colors.black.withAlpha(200),
                 fontSize: 25.0,
                 fontFamily: 'Montserrat',
               ),
@@ -85,7 +84,7 @@ class _BusCardState extends State<BusCard> {
             child: Text(
               'Show in Map',
               style: TextStyle(
-                  color: Colors.black.withAlpha(200),
+                  //color: Colors.black.withAlpha(200),
                   fontSize: 15.0,
                   fontFamily: 'Montserrat'),
             ),
@@ -104,7 +103,7 @@ class _BusCardState extends State<BusCard> {
             },
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
-            borderSide: BorderSide(color: Colors.black),
+            borderSide: BorderSide(color: Theme.of(context).backgroundColor),
           ),
         ],
       ),

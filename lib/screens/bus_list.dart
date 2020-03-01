@@ -57,7 +57,7 @@ class _BusListState extends State<BusList> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        color: Colors.orangeAccent,
+        color: Theme.of(context).backgroundColor,
         child: FutureBuilder(
           future: fetchBuses(),
           builder: (context, snapshot) {
